@@ -1,4 +1,3 @@
 module.exports = {
-    Note: require("./Cardio"),
-    User: require("./Resistance")
+    Workouts: require("./Workouts")
   };
