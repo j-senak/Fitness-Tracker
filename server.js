@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-const Resistance = require("../models/resistance.js");
+const Workouts = require("../models/Workouts.js");
 
 const PORT = process.env.PORT || 3000;
 
@@ -34,8 +34,21 @@ app.get("/stats", (req, res) => {
 // API routes
 app.get("/api/workouts", (req, res) => {
     db.Workouts.find({})
-    .then(workoutdb => )
-})
+    .then(workoutdb => {
+        res.json(workoutdb);
+    }).catch(err => {
+        res.json(err);
+    });
+});
+
+app.post("/api/workouts", (req, res) => {
+    db.Workouts.create({});
+    return (req.body);
+}).catch(err => {
+    res.json(err);
+});
+
+
 
 
 
