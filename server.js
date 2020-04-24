@@ -2,11 +2,10 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
-const Workouts = require("../models/Workouts.js");
 
 const PORT = process.env.PORT || 3000;
 
-// const db = require();
+const db = require("./models");
 const app = express();
 
 app.use(logger("dev"));
@@ -44,11 +43,19 @@ app.get("/api/workouts", (req, res) => {
 app.post("/api/workouts", (req, res) => {
     db.Workouts.create({});
     return (req.body);
-}).catch(err => {
-    res.json(err);
+});
+// .catch(err => {
+//     res.json(err);
+// });
+
+app.get("/api/workouts/range", (req, res) => {
+    db.Workouts.find({}).limit(7)
+    .then(workoutdb => {
+        res.json(err);
+    });
 });
 
-
+// app.put("/api/workouts/:id", ({ body, params }))
 
 
 
