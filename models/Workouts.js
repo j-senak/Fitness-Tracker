@@ -7,7 +7,7 @@ const workoutsSchema = new Schema({
     type: Date,
     default: () => new Date(),
   },
-  userExercise: [{
+  exercises: [{
   name: {
     type: String,
     required: "Enter a name of an exercise",
