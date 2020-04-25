@@ -78,14 +78,15 @@ app.put("/api/workouts/:id", ({ body, params }, res) => {
     });
 });
 
-app.delete("/api/workouts", ({ body }, res) => {
-    db.Workouts.findByIdAndDelete(body.id)
-      .then(() => {
-        res.json(true);
-      }).catch(err => {
-        res.json(err);
-      });
-  });
+// Added for practice with CRUD
+// app.delete("/api/workouts", ({ body }, res) => {
+//     db.Workouts.findByIdAndDelete(body.id)
+//       .then(() => {
+//         res.json(true);
+//       }).catch(err => {
+//         res.json(err);
+//       });
+//   });
 
 
 app.listen(PORT, () => {
