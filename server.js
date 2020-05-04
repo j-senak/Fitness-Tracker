@@ -41,8 +41,13 @@ app.get("/api/workouts", (req, res) => {
 });
 
 app.post("/api/workouts", (req, res) => {
-    db.Workouts.create({});
-    res.json(req.body);
+    db.Workouts.create({}).then(workoutdb => {
+        console.log("This is my post route");
+        console.log(workoutdb);
+        res.json(workoutdb);
+    }).catch(err => {
+        res.json(err);
+    });
 });
 // .catch(err => {
 //     res.json(err);
@@ -66,6 +71,7 @@ app.get("/api/workouts/range", (req, res) => {
 });
 
 app.put("/api/workouts/:id", ({ body, params }, res) => {
+    console.log(body);
     db.Workouts.findByIdAndUpdate(params.id, {
         $push: { exercises: body }
     },

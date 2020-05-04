@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const opts = { toJSON: { virtuals: true } };
+
 const workoutsSchema = new Schema({
   day: {
     type: Date,
@@ -32,7 +34,15 @@ const workoutsSchema = new Schema({
     type: Number,
   }
   }]
-});
+}, opts);
+
+workoutsSchema.virtual('totalDuration').get(function() {
+  let totalDuration = 0;
+  this.exercises.foreach(exercise => {
+    totalDuration += exercise.duration;
+  })
+    return totalDuration;
+  });
 
 const Workouts = mongoose.model("Workouts", workoutsSchema);
 
