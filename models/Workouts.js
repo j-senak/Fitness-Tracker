@@ -36,13 +36,15 @@ const workoutsSchema = new Schema({
   }]
 }, opts);
 
-workoutsSchema.virtual('totalDuration').get(function() {
-  let totalDuration = 0;
-  this.exercises.foreach(exercise => {
-    totalDuration += exercise.duration;
-  })
-    return totalDuration;
-  });
+workoutsSchema.virtual('totalDuration').get(function () {
+  totalDuration = 0;
+  if (this.exercises.length) {
+    this.exercises.forEach(exercise => {
+      totalDuration += exercise.duration;
+    });
+  }
+  return totalDuration;
+});
 
 const Workouts = mongoose.model("Workouts", workoutsSchema);
 
